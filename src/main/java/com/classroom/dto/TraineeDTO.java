@@ -26,6 +26,10 @@ public class TraineeDTO {
 		this.classroom = classroom;
 	}
 	
+	@Override
+	public String toString() {
+		return "TraineeDTO [traineeId=" + traineeId + ", traineeName=" + traineeName + ", classroom=" + classroom + "]";
+	}
 	
 	
 

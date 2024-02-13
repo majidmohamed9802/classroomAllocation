@@ -33,6 +33,12 @@ public class ClassroomDTO {
 		this.availableCapacity = availableCapacity;
 	}
 	
+	@Override
+	public String toString() {
+		return "ClassroomDTO [classroomId=" + classroomId + ", buildingName=" + buildingName + ", capacity=" + capacity
+				+ ", availableCapacity=" + availableCapacity + "]";
+	}
+	
 	
 
 
