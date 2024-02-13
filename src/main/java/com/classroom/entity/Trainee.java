@@ -3,6 +3,8 @@ package com.classroom.entity;
 import com.classroom.dto.ClassroomDTO;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -10,6 +12,7 @@ import jakarta.persistence.ManyToOne;
 public class Trainee {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer traineeId;
 	private String traineeName;
 	@ManyToOne(cascade = CascadeType.ALL)
