@@ -33,11 +33,22 @@ public class ClassroomAllocationService {
 		TraineeDTO traineeDTO = new TraineeDTO();
 		traineeDTO.setClassroom(null);
 		traineeDTO.setTraineeId(trainee.getTraineeId());
-		traineeDTO.setTraineeName(trainee.getTraineeName());
-		
-		
-		
+		traineeDTO.setTraineeName(trainee.getTraineeName());		
 		return traineeDTO;
+	}
+	
+	
+	public String addTrainee(TraineeDTO traineeDTO) throws ClassroomException {
+	
+		
+		Trainee trainee = new Trainee();
+		trainee.setTraineeName(traineeDTO.getTraineeName());
+		trainee.setClassroom(null);
+		
+		traineeRepo.save(trainee);
+		
+		
+		return "Trainee:  "+ trainee.getTraineeName()+ "  has been added.";
 	}
 	
 }

@@ -26,17 +26,31 @@ public class ClassroomAllocationApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-	//	getTrainee();
-		
+		//getTrainee();
+		addTrainee();
 	}
 	
 	public void getTrainee() {
 		try {
-			Integer traineeId= 800002;
-			TraineeDTO traineeDTO = classroomAllocationService.getTrainee(traineeId);	
+			Integer traineeId = 800002;
+			TraineeDTO traineeDTO = classroomAllocationService.getTrainee(traineeId);
 			LOGGER.info(traineeDTO);
+		} catch (Exception e) {
+			String message ="Some exception occured. Please check log file for more details!!";
+			LOGGER.info( message);
+		}
+	}
+	
+	public void addTrainee() {
+		try {
+			TraineeDTO traineeDTO = new TraineeDTO();
+			traineeDTO.setTraineeName("John");
+			
+			String message= classroomAllocationService.addTrainee(traineeDTO);
+			
+			LOGGER.info(message);
 		}catch(Exception e) {
-			LOGGER.info("Some exception occured");
+			LOGGER.error(e.getMessage() + "  <----Exception occurred !!!");
 		}
 	}
 
