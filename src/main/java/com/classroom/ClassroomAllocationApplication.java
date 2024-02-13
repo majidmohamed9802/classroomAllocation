@@ -12,7 +12,7 @@ import com.classroom.service.ClassroomAllocationService;
 
 @SpringBootApplication
 public class ClassroomAllocationApplication implements CommandLineRunner {
-	
+	 
 	
 	public static final Log LOGGER = LogFactory.getLog(ClassroomAllocationApplication.class);
 	
