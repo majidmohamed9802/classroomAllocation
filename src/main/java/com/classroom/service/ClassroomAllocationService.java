@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.classroom.dto.TraineeDTO;
+import com.classroom.entity.Classroom;
 import com.classroom.entity.Trainee;
 import com.classroom.exception.ClassroomException;
 import com.classroom.repository.ClassroomRepository;
@@ -50,5 +51,26 @@ public class ClassroomAllocationService {
 		
 		return "Trainee:  "+ trainee.getTraineeName()+ "  has been added.";
 	}
+	
+	
+	public String allocateClassroom(String classroomId, Integer traineeId) throws ClassroomException {
+		
+		Optional<Classroom> optionalC = classroomRepo.findById(classroomId);
+		Optional<Trainee> optionalT = traineeRepo.findById(traineeId);
+		
+		Classroom classroom = optionalC.orElseThrow(()-> new ClassroomException("classroom doesnt exist"));
+		Trainee trainee = optionalT.orElseThrow(()-> new ClassroomException("Trainee doesnt exist"));
+		
+		classroom.setAvailableCapacity(classroom.getAvailableCapacity()-1);
+		
+		trainee.setClassroom(classroom);
+		
+		
+		return "Trainee "+ trainee.getTraineeName()+" has been added to classroom: "+ classroom.getClassroomId();
+	}
+	
+	
+	
+	
 	
 }
