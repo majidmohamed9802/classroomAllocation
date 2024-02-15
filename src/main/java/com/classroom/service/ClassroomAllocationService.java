@@ -70,6 +70,21 @@ public class ClassroomAllocationService {
 	}
 	
 	
+	public String deleteTrainee(Integer traineeId) throws ClassroomException {
+		
+		Optional<Trainee> optional = traineeRepo.findById(traineeId);
+		Trainee trainee = optional.orElseThrow(()-> new ClassroomException("Trainee doesnt exist"));
+		
+		if(trainee.getClassroom()!= null) {
+		trainee.getClassroom().setAvailableCapacity(trainee.getClassroom().getAvailableCapacity()+1);
+		
+		trainee.setClassroom(null);
+	}
+		
+		traineeRepo.delete(trainee);
+		
+		return "Trainee: "+ trainee.getTraineeName()+" has been successfully deleted";
+	}
 	
 	
 	
