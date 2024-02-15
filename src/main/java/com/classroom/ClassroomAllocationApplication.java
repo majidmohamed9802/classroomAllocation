@@ -26,8 +26,10 @@ public class ClassroomAllocationApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		//getTrainee();
-		addTrainee();
+	//	getTrainee();
+	//	addTrainee();
+	//	allocateTrainee();
+		deleteTrainee();
 	}
 	
 	public void getTrainee() {
@@ -44,7 +46,7 @@ public class ClassroomAllocationApplication implements CommandLineRunner {
 	public void addTrainee() {
 		try {
 			TraineeDTO traineeDTO = new TraineeDTO();
-			traineeDTO.setTraineeName("John");
+			traineeDTO.setTraineeName("Abdi");
 			
 			String message= classroomAllocationService.addTrainee(traineeDTO);
 			
@@ -53,5 +55,33 @@ public class ClassroomAllocationApplication implements CommandLineRunner {
 			LOGGER.error(e.getMessage() + "  <----Exception occurred !!!");
 		}
 	}
+	
+	
+	public void allocateTrainee() {
+		
+		try {
+			
+			Integer traineeId = 800009;
+			String classroomId = "SL-6";			
+			String message = classroomAllocationService.allocateClassroom(classroomId, traineeId);
+			
+			LOGGER.info(message);
+			
+		}catch(Exception e) {
+			LOGGER.error(e.getMessage() + "  <----Exception occurred !!!");
+		}
+		
+	}
+	
+	public void deleteTrainee() {
+		try {
+			Integer traineeId = 800005;
+			String message = classroomAllocationService.deleteTrainee(traineeId);
+			LOGGER.info(message);
+		}catch(Exception e) {
+			LOGGER.error(e.getMessage() + "  <----Exception occurred !!!");
+		}
+	}
+	
 
 }
